@@ -2,13 +2,10 @@ import os
 import click
 import re
 import const
-from fs import isTask
-
-
-def process_tmp(tmp, tmp_map):
-    for key in tmp_map:
-        tmp = re.sub('{{'+key+'}}', tmp_map[key], tmp)
-    return tmp
+import git
+import formatters
+from repo import getLogStruct
+from fs import isProject, isClient, createTask, createClient, createProject
 
 
 @click.group()
@@ -52,8 +49,14 @@ def init(client, project):
     print("initialize has been done successfully")
 
 
-cli.add_command(init)
+@click.command()
+@click.option('--title', help='Title of entity')
+def add(title):
+    createTask(title) if isProject() else createProject(title)
 
+
+cli.add_command(init)
+cli.add_command(add)
 
 if __name__ == '__main__':
     cli()
