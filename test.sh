@@ -1,7 +1,12 @@
 #1 init
 python main.py init testClient testProject
 
-if [[ -d "testClient" ]] && [[ -d "testClient/testProject" ]]; then
+PROJECT_PATH="testClient/testProject"
+
+if [[ -d "testClient" ]] && [[ -d $PROJECT_PATH ]] &&
+  [[ -d "$PROJECT_PATH/Backlog" ]] &&
+  [[ -d "$PROJECT_PATH/Progress" ]] &&
+  [[ -d "$PROJECT_PATH/Done" ]]; then
   echo "Init test passed"
 fi
 

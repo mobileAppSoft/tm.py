@@ -44,6 +44,10 @@ def init(client, project):
             os.O_RDONLY | os.O_CREAT, const.MODE)
     project_path = os.path.join(client_path, project)
     os.makedirs(project_path, const.MODE)
+    os.makedirs(project_path + '/Backlog', const.MODE)
+    os.makedirs(project_path + '/Progress', const.MODE)
+    os.makedirs(project_path + '/Done', const.MODE)
+    os.makedirs(project_path + '/TechDebt', const.MODE)
     os.open(os.path.join(project_path, const.PROJECT),
             os.O_RDONLY | os.O_CREAT, const.MODE)
     print("initialize has been done successfully")
