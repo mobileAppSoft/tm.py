@@ -17,3 +17,8 @@ PROJECT = '.project'
 TASK = '.task'
 
 MODE = '0700'
+
+
+# Exceptions
+
+NOT_JSON = ' not a valid JSON file!'
