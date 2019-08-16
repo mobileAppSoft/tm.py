@@ -38,7 +38,7 @@ who:
 
 ## How to install
 
-## `pip install tm-py`
+`pip install tm-py`
 
 ## Authors
 
