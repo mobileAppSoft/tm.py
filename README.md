@@ -43,7 +43,7 @@ who:
 ## Authors
 
 [Dima Shulgin](https://github.com/dz-s)  
-Rework and original implementation in Go
+Rework and original implementation in Python
 
 [Vlad Zamskoi](https://github.com/jvlad)  
 Original idea and tech. requirements  
