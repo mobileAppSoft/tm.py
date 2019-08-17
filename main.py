@@ -56,7 +56,7 @@ def init(client, project):
 @click.command()
 @click.option('--title', help='Title of entity')
 def add(title):
-    createTask(title) if isProject() else createProject(title)
+    createProject(title) if isClient() else createTask(title)
 
 
 cli.add_command(init)

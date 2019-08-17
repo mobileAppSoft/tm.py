@@ -20,7 +20,9 @@ def createProject(parameter_list):
 
 def createTask(title):
     cwd = os.getcwd()
+    print(cwd)
     os.makedirs(title, MODE)
+    os.makedirs(os.path.join(cwd+'/'+title, 'Extras'), MODE)
     os.open(os.path.join(cwd+'/'+title, TASK),
             os.O_RDONLY | os.O_CREAT)
     f = open(os.path.join(cwd+'/'+title, title + '.md'), 'w+')

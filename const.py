@@ -16,7 +16,7 @@ CLIENT = '.client'
 PROJECT = '.project'
 TASK = '.task'
 
-MODE = '0700'
+MODE = 0o755
 
 
 # Exceptions
