@@ -10,11 +10,11 @@ def process_tmp(tmp, tmp_map):
     return tmp
 
 
-def createClient(title):
+def create_client(title):
     pass
 
 
-def createProject(title, path=os.getcwd()):
+def create_project(title, path=os.getcwd()):
     os.makedirs(path, MODE)
     os.makedirs(path + '/Backlog', MODE)
     os.makedirs(path + '/Progress', MODE)
@@ -24,7 +24,7 @@ def createProject(title, path=os.getcwd()):
             os.O_RDONLY | os.O_CREAT, MODE)
 
 
-def createTask(title):
+def create_task(title):
     cwd = os.getcwd()
     print(cwd)
     os.makedirs(title, MODE)

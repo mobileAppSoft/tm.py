@@ -5,7 +5,7 @@ import const
 import git
 import formatters
 from repo import get_log_struct
-from fs import isProject, isClient, createTask, createClient, createProject
+from fs import isProject, isClient, create_task, create_client, create_project
 
 
 @click.group()
@@ -43,14 +43,14 @@ def init(client, project):
     os.open(client_path + '/' + const.CLIENT,
             os.O_RDONLY | os.O_CREAT, const.MODE)
     project_path = os.path.join(client_path, project)
-    createProject(project, project_path)
+    create_project(project, project_path)
     print("initialize has been done successfully")
 
 
 @click.command()
 @click.option('--title', help='Title of entity')
 def add(title):
-    createProject(title) if isClient() else createTask(title)
+    create_project(title) if isClient() else create_task(title)
 
 
 cli.add_command(init)
