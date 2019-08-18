@@ -4,23 +4,22 @@ from const import NOT_JSON
 from formatters import formatTSP
 
 
-path = 'config/tm.config.json'
-with open(path, 'r') as f:
-    data = f.read()
-try:
-    config = json.loads(data)
-except:
-    raise Exception(path + NOT_JSON)
-
-# TODO: handle initialize of git repo from tm.config
-repo = git.Repo('.')
-
-
-def getJSON():
-    print(config['repo'])
+def get_repo():
+    path = 'config/tm.config.json'
+    with open(path, 'r') as f:
+        data = f.read()
+    try:
+        config = json.loads(data)
+    except:
+        raise Exception(path + NOT_JSON)
+    return config['REPO']
 
 
-def getLogStruct(title):
+# TODO: handle initialize of git repo from tm.config.json
+repo = git.Repo(get_repo())
+
+
+def get_log_struct(title):
     log = repo.refs[0].log()
     d = {
         '.Title': title,

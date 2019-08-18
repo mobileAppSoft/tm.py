@@ -4,7 +4,7 @@ import re
 import const
 import git
 import formatters
-from repo import getLogStruct
+from repo import get_log_struct
 from fs import isProject, isClient, createTask, createClient, createProject
 
 

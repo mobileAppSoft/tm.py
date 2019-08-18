@@ -1,6 +1,6 @@
 import os
 import re
-from repo import getLogStruct
+from repo import get_log_struct
 from const import CLIENT, PROJECT, TASK, MODE, TASK_TMP
 
 
@@ -26,7 +26,7 @@ def createTask(title):
     os.open(os.path.join(cwd+'/'+title, TASK),
             os.O_RDONLY | os.O_CREAT)
     f = open(os.path.join(cwd+'/'+title, title + '.md'), 'w+')
-    f.write(process_tmp(TASK_TMP, getLogStruct(title)))
+    f.write(process_tmp(TASK_TMP, get_log_struct(title)))
     f.close()
 
 
