@@ -14,8 +14,14 @@ def createClient(title):
     pass
 
 
-def createProject(parameter_list):
-    pass
+def createProject(title, path=os.getcwd()):
+    os.makedirs(path, MODE)
+    os.makedirs(path + '/Backlog', MODE)
+    os.makedirs(path + '/Progress', MODE)
+    os.makedirs(path + '/Done', MODE)
+    os.makedirs(path + '/TechDebt', MODE)
+    os.open(os.path.join(path, PROJECT),
+            os.O_RDONLY | os.O_CREAT, MODE)
 
 
 def createTask(title):
