@@ -4,8 +4,8 @@ import re
 import const
 import git
 import formatters
-from repo import get_log_struct
-from fs import isProject, isClient, create_task, create_client, create_project
+from repo import set_project
+from fs import is_project, is_client, create_task, create_client, create_project
 
 
 @click.group()
@@ -50,11 +50,12 @@ def init(client, project):
 @click.command()
 @click.option('--title', help='Title of entity')
 def add(title):
-    create_project(title) if isClient() else create_task(title)
+    create_project(title) if is_client() else create_task(title)
 
 
 cli.add_command(init)
 cli.add_command(add)
 
 if __name__ == '__main__':
+    set_project()
     cli()

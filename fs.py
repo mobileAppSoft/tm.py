@@ -36,13 +36,13 @@ def create_task(title):
     f.close()
 
 
-def isClient():
+def is_client():
     return os.path.isfile(CLIENT)
 
 
-def isProject():
+def is_project():
     return os.path.isfile(PROJECT)
 
 
-def isTask():
+def is_task():
     return os.path.isfile(TASK)

@@ -1,3 +1,9 @@
 {
-  "REPO": "~/open-source/tm.py"
+  "projects": [
+    {
+      "name": "tm",
+      "description": "Minimal Task Manager",
+      "repo": "~/open-source/tm.py"
+    }
+  ]
 }

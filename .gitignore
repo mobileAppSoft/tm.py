@@ -4,3 +4,4 @@ venv
 bin
 lib
 *.egg-info
+include
