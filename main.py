@@ -4,7 +4,7 @@ import re
 import const
 import git
 import formatters
-from repo import set_project
+from repo import set_project, get_project
 from fs import is_project, is_client, create_task, create_client, create_project
 
 
@@ -57,5 +57,4 @@ cli.add_command(init)
 cli.add_command(add)
 
 if __name__ == '__main__':
-    set_project()
-    cli()
+    сli()

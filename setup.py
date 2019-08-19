@@ -10,7 +10,8 @@ setup(
     packages=['tm-py'],
     install_requires=[
         'click',
-        'GitPython'
+        'GitPython',
+        'inquirer'
     ],
     zip_safe=False,
     license='MIT',

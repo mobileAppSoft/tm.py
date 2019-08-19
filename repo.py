@@ -1,6 +1,7 @@
 import os
 import git
 import json
+from ui import create_list
 from const import NOT_JSON
 from formatters import formatTSP
 
@@ -14,8 +15,12 @@ def set_project(name=''):
         projects = config['projects']
         if not len(projects):
             return False
+        project_names = list(map(lambda x: x['name'], projects))
+        # CLI component to set project interactive
+        answer = create_list(
+            'project', 'Set up the project you want to work on:', project_names)
         cur_project = ([
-            x for x in projects if x['name'] == name] or projects)[0]
+            x for x in projects if x['name'] == (name or answer['project'])])[0]
         os.putenv('TM_CUR_PROJECT', cur_project['name'])
         os.putenv('TM_CUR_REPO', cur_project['repo'])
         return True
