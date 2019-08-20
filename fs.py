@@ -1,4 +1,5 @@
 import os
+import shutil
 import re
 from repo import get_log_struct
 from const import CLIENT, PROJECT, TASK, MODE, TASK_TMP
@@ -46,3 +47,7 @@ def is_project():
 
 def is_task():
     return os.path.isfile(TASK)
+
+
+def move_task(task, folder):
+    pass

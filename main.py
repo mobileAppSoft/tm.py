@@ -49,6 +49,12 @@ def init(client, project):
 
 @click.command()
 @click.option('--title', help='Title of entity')
+def mv(task, status):
+    pass
+
+
+@click.command()
+@click.option('--title', help='Title of entity')
 def add(title):
     create_project(title) if is_client() else create_task(title)
 
@@ -57,4 +63,4 @@ cli.add_command(init)
 cli.add_command(add)
 
 if __name__ == '__main__':
-    сli()
+    cli()
