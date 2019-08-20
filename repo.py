@@ -2,58 +2,59 @@ import os
 import git
 import json
 from ui import create_list
-from const import NOT_JSON
+from const import NOT_JSON, PATH
 from formatters import formatTSP
 
 
 def set_project(name=''):
-    path = 'config/tm.config.json'
-    with open(path, 'r') as f:
+    config = parse_config()
+    projects = config['projects']
+    if not len(projects):
+        return False
+    project_names = list(map(lambda x: x['name'], projects))
+    # CLI component to set project interactive
+    answer = create_list(
+        'project', 'Set up the project you want to work on:', project_names)
+    cur_project = ([
+        x for x in projects if x['name'] == (name or answer['project'])])[0]
+    config['cur_project'] = cur_project['name']
+    with open(PATH, 'w') as out_f:
+        json.dump(config, out_f)
+    return True
+
+
+def parse_config():
+    with open(PATH, 'r') as f:
         data = f.read()
     try:
-        config = json.loads(data)
-        projects = config['projects']
-        if not len(projects):
-            return False
-        project_names = list(map(lambda x: x['name'], projects))
-        # CLI component to set project interactive
-        answer = create_list(
-            'project', 'Set up the project you want to work on:', project_names)
-        cur_project = ([
-            x for x in projects if x['name'] == (name or answer['project'])])[0]
-        os.putenv('TM_CUR_PROJECT', cur_project['name'])
-        os.putenv('TM_CUR_REPO', cur_project['repo'])
-        return True
+        return json.loads(data)
     except:
-        raise Exception(path + NOT_JSON)
+        raise Exception(PATH + NOT_JSON)
 
 
 def get_project():
-    get_env_var('TM_CUR_PROJECT')
+    config = parse_config()
+    return config['cur_project']
 
 
-def get_env_var(name):
-    os.system('echo $' + name)
-
-
-def get_repo():
-    get_env_var('TM_CUR_REPO')
+def get_tm_project_repo():
+    config = parse_config()
+    project = config['cur_project']
+    if(not project):
+        return config['projects'][0]['tm_repo']
+    else:
+        return project['tm_repo']
 
 
 def get_project_list():
-    path = 'config/tm.config.json'
-    with open(path, 'r') as f:
-        data = f.read()
-    try:
-        config = json.loads(data)
-    except:
-        raise Exception(path + NOT_JSON)
-    print(config['projects'])
+    config = parse_config()
+    print(list(map(lambda x: x['name'], config['projects'])))
 
 
 def get_log_struct(title):
     # TODO: handle initialize of git repo from tm.config.json
-    repo = git.Repo(get_repo())
+    project = get_project()
+    repo = git.Repo(project['repo'])
     log = repo.refs[0].log()
     d = {
         '.Title': title,

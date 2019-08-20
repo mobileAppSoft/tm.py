@@ -5,7 +5,7 @@ import const
 import git
 import formatters
 from repo import set_project, get_project
-from fs import is_project, is_client, create_task, create_client, create_project
+from fs import is_project, is_client, create_task, create_client, create_project, move_task
 
 
 @click.group()
@@ -37,9 +37,8 @@ def init(client, project):
    # | ---rwx--- | 0070 | Group |
    # | ------rwx | 0007 | Other |
    # +------------+------+-------+
-
-    os.makedirs(client, const.MODE)
     client_path = os.path.join(cwd, client)
+    os.mkdir(client_path, const.MODE)
     os.open(client_path + '/' + const.CLIENT,
             os.O_RDONLY | os.O_CREAT, const.MODE)
     project_path = os.path.join(client_path, project)
@@ -48,19 +47,22 @@ def init(client, project):
 
 
 @click.command()
-@click.option('--title', help='Title of entity')
+@click.argument('task')
+@click.option('--status', help='Move task to another status')
 def mv(task, status):
-    pass
+    move_task(task, status)
 
 
 @click.command()
 @click.option('--title', help='Title of entity')
-def add(title):
-    create_project(title) if is_client() else create_task(title)
+@click.option('--status', help='Create task in status')
+def add(title, status):
+    create_project(title) if is_client() else create_task(title, status)
 
 
 cli.add_command(init)
 cli.add_command(add)
+cli.add_command(mv)
 
 if __name__ == '__main__':
     cli()

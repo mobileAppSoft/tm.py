@@ -3,7 +3,14 @@
     {
       "name": "tm",
       "description": "Minimal Task Manager",
-      "repo": "~/open-source/tm.py"
+      "repo": "/Users/dimashulhin/open-source/tm.py",
+      "tm_repo": "/Users/dimashulhin/open-source/vladZamskoi/tm"
     }
-  ]
+  ],
+  "cur_project": {
+    "name": "tm",
+    "description": "Minimal Task Manager",
+    "repo": "/Users/dimashulhin/open-source/tm.py",
+    "tm_repo": "/Users/dimashulhin/open-source/vladZamskoi/tm"
+  }
 }

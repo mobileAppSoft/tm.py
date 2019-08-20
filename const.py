@@ -18,6 +18,9 @@ TASK = '.task'
 
 MODE = 0o755
 
+# Configuration
+
+PATH = 'config/tm.config.json'
 
 # Exceptions
 
