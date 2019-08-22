@@ -4,13 +4,25 @@
       "name": "tm",
       "description": "Minimal Task Manager",
       "repo": "/Users/dimashulhin/open-source/tm.py",
-      "tm_repo": "/Users/dimashulhin/open-source/vladZamskoi/tm"
+      "tm_repo": "/Users/dimashulhin/open-source/vladZamskoi/tm",
+      "boards": {
+        "trello": {
+          "key": "0263ec4c36eefc72cc8efec06c10af92",
+          "token": "3130e1be6a57a2819207e566ba944a2e2aa258f8f3570a92a357676dbcbfb6ed"
+        }
+      }
     }
   ],
   "cur_project": {
     "name": "tm",
     "description": "Minimal Task Manager",
     "repo": "/Users/dimashulhin/open-source/tm.py",
-    "tm_repo": "/Users/dimashulhin/open-source/vladZamskoi/tm"
+    "tm_repo": "/Users/dimashulhin/open-source/vladZamskoi/tm",
+    "boards": {
+      "trello": {
+        "key": "0263ec4c36eefc72cc8efec06c10af92",
+        "token": "3130e1be6a57a2819207e566ba944a2e2aa258f8f3570a92a357676dbcbfb6ed"
+      }
+    }
   }
 }
