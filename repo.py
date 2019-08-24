@@ -51,7 +51,7 @@ def get_project_list():
     print(list(map(lambda x: x['name'], config['projects'])))
 
 
-def get_log_struct(title):
+def get_log_struct(title, desc):
     # TODO: handle initialize of git repo from tm.config.json
     project = get_project()
     repo = git.Repo(project['repo'])
@@ -62,5 +62,6 @@ def get_log_struct(title):
         '.Commit': log[0][1],
         '.Author': log[0].actor.name + ' <' + log[0].actor.email + '>',
         '.Date': formatTSP(log[0][3][0]),
+        '.Desc': desc,
     }
     return d

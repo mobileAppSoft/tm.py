@@ -3,7 +3,10 @@ import click
 import re
 import const
 import git
+import json
 import formatters
+from trello import _import
+from ui import create_list
 from repo import set_project, get_project
 from fs import is_project, is_client, create_task, create_client, create_project, move_task
 
@@ -50,7 +53,7 @@ def init(client, project):
 @click.argument('task')
 @click.option('--status', help='Move task to another status')
 def mv(task, status):
-    move_task(task, status)
+    move_task(task)
 
 
 @click.command()
@@ -60,9 +63,16 @@ def add(title, status):
     create_project(title) if is_client() else create_task(title, status)
 
 
+@click.command()
+def fetch():
+    answer = create_list('its', 'Select ITS', ['Trello', 'JIRA'])
+    _import()
+
+
 cli.add_command(init)
 cli.add_command(add)
 cli.add_command(mv)
+cli.add_command(fetch)
 
 if __name__ == '__main__':
     cli()

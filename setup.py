@@ -11,7 +11,8 @@ setup(
     install_requires=[
         'click',
         'GitPython',
-        'inquirer'
+        'inquirer',
+        'progress'
     ],
     zip_safe=False,
     license='MIT',
