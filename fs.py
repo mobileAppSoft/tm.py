@@ -1,4 +1,5 @@
 import os
+import json
 import sys
 import shutil
 import re
@@ -14,6 +15,17 @@ def process_tmp(tmp, tmp_map):
 
 def create_client(title):
     pass
+
+
+def fs_to_JSON(path):
+    d = {'name': os.path.basename(path)}
+    if os.path.isdir(path):
+        d['type'] = "directory"
+        d['children'] = [fs_to_JSON(os.path.join(path, x)) for x in os.listdir
+                         (path)]
+    else:
+        d['type'] = "file"
+    return d
 
 
 def create_project(title, path=os.getcwd()):
