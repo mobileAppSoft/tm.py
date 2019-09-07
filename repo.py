@@ -17,7 +17,20 @@ def set_project(name=''):
         'project', 'Set up the project you want to work on:', project_names)
     cur_project = ([
         x for x in projects if x['name'] == (name or answer['project'])])[0]
-    config['cur_project'] = cur_project['name']
+    config['cur_project'] = cur_project
+    with open(PATH, 'w') as out_f:
+        json.dump(config, out_f)
+    return True
+
+
+def set_params(params={}):
+    config = parse_config()
+    projects = config['projects']
+    if not len(projects):
+        return False
+    cur_project = config['cur_project']
+    cur_project = {**cur_project, **params}
+    config['cur_project'] = cur_project
     with open(PATH, 'w') as out_f:
         json.dump(config, out_f)
     return True

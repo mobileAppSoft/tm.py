@@ -77,6 +77,16 @@ def get_my_issues():
     return list(map(lambda x: [x['id'], x['name'], x['desc'], x['due']], my_issues))
 
 
+def get_my_boards(member_id=None):
+    if not member_id:
+        me = get_me()
+        user_id = me['id']
+    else:
+        user_id = member_id
+    boards = get_boards(user_id)
+    return boards
+
+
 def _import():
     issues = get_my_issues()
     _len = len(issues)
@@ -85,3 +95,13 @@ def _import():
         create_task(issues[i][1], desc=issues[i][2])
         bar.next()
     bar.finish()
+
+
+# def _import():
+#     issues = get_my_issues()
+#     _len = len(issues)
+#     bar = progress('Trello issues import: ', _len)
+#     for i in range(_len):
+#         create_task(issues[i][1], desc=issues[i][2])
+#         bar.next()
+#     bar.finish()
