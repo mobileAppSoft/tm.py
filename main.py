@@ -5,10 +5,11 @@ import const
 import git
 import json
 import formatters
-from trello import _import
+from trello import _import as trello_import
+from jira_api import _import as jira_import
 from ui import create_list
 from repo import set_project, get_project
-from fs import is_project, is_client, create_task, create_client, create_project, move_task
+from fs import is_project, is_client, create_task, create_client, create_project, move_task, fs_to_JSON
 
 
 @click.group()
@@ -66,7 +67,10 @@ def add(title, status):
 @click.command()
 def fetch():
     answer = create_list('its', 'Select ITS', ['Trello', 'JIRA'])
-    _import()
+    if answer['its'] == 'JIRA':
+        jira_import()
+    else:
+        trello_import()
 
 
 cli.add_command(init)

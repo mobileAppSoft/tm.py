@@ -44,7 +44,6 @@ def get_boards(member_id=None):
 
 
 def get_cards(member_id=None):
-
     spin = spinner()
     for _ in range(5):
         time.sleep(0.1)
