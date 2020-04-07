@@ -19,8 +19,17 @@ def set_project(name=''):
         x for x in projects if x['name'] == (name or answer['project'])])[0]
     config['cur_project'] = cur_project
     with open(PATH, 'w') as out_f:
-        json.dump(config, out_f)
+        json.dump(config, out_f, indent=4, sort_keys=True)
     return True
+
+
+def add_project(path):
+    os_path = os.path.join(*path.split('\/'), 'tm.config.json')
+    config = parse_config()
+    new_config = parse_json_file(os_path)
+    config['projects'].append(new_config)
+    with open(PATH, 'w') as f:
+        json.dump(config, f, indent=4, sort_keys=True)
 
 
 def set_params(params={}):
@@ -37,12 +46,16 @@ def set_params(params={}):
 
 
 def parse_config():
-    with open(PATH, 'r') as f:
+    return parse_json_file(PATH)
+
+
+def parse_json_file(path):
+    with open(path, 'r') as f:
         data = f.read()
     try:
         return json.loads(data)
     except:
-        raise Exception(PATH + NOT_JSON)
+        raise Exception(path + NOT_JSON)
 
 
 def get_project():
